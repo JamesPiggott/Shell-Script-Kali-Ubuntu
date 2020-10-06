@@ -44,3 +44,28 @@ sudo apt -y install default-jdk
 
 ## Install IntelliJ
 sudo snap install intellij-idea-community --classic
+
+## Installing Google Cloud SDK
+
+### Download and install Gcloud
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-313.0.0-linux-x86_64.tar.gz
+tar -xvzf google-cloud-sdk-313.0.0-linux-x86_64.tar.gz 
+./google-cloud-sdk/install.sh
+./google-cloud-sdk/bin/gcloud init
+source ~/.bashrc
+
+### Install kubectl
+gcloud components install kubectl
+
+### List current GCP projects amd set gcloud to that project
+gcloud projects list
+gcloud config set project [project_id]
+
+Navigate to the GKE page of your project so the Kubernetes Engine API will switch on. That will take several minutes
+
+### Enable APIs
+gcloud services enable cloudresourcemanager.googleapis.com pubsub.googleapis.com
+
+### Set timezine and create a GKE cluster
+gcloud  config set compute/zone europe-west3-c
+gcloud container clusters create test_cluster --num-nodes 3
