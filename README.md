@@ -66,6 +66,59 @@ Navigate to the GKE page of your project so the Kubernetes Engine API will switc
 ### Enable APIs
 gcloud services enable cloudresourcemanager.googleapis.com pubsub.googleapis.com
 
-### Set timezine and create a GKE cluster
+### Set timezone and create a GKE cluster
 gcloud  config set compute/zone europe-west3-c
 gcloud container clusters create test_cluster --num-nodes 3
+
+## Set up Google Cloud Repository
+### Install docker
+sudo apt -y install docker.io
+sudo usermod -a -G docker ${USER}
+
+### Ensure billing is activated, if you have only one billing account this is done automatically
+
+### Enable Container Registry API with the following [link](https://console.cloud.google.com/apis/library/containerregistry.googleapis.com?_ga=2.244700289.523870026.1602227073-601722703.1601999851)
+
+#### Get project ID and number as follows
+PROJECT=$(gcloud config get-value project)
+echo $PROJECT && gcloud projects list --filter="$PROJECT" --format="value(PROJECT_NUMBER)"
+
+#### Check if you have role 'roles/containerregistry.ServiceAgent', which you should after Oct 5th 2020
+gcloud projects get-iam-policy [PROJECT-ID]  \
+--flatten="bindings[].members" \
+--format='table(bindings.role)' \
+--filter="bindings.members:service-[PROJECT-NUMBER]@containerregistry.iam.gserviceaccount.com"
+
+#### If so, continue or else Google is your friend
+gcloud auth configure-docker
+
+### Build a little test image
+docker build -t [test-project] .
+docker tag [test-project] gcr.io/[PROJECT-ID]/[test-project]:tag1
+docker push gcr.io/[PROJECT-ID]/[test-project]:tag1
+docker pull gcr.io/[PROJECT-ID]/[test-project]:tag1
+
+#### Head out to your project container registry to see the actual image
+gcloud container images delete gcr.io/[PROJECT-ID]/quickstart-image:tag1 --force-delete-tags
+
+## Pentesting software
+
+### Installing Hashcat
+sudo apt -y install libssl-dev libcurl4-openssl-dev libpcap0.8-dev zlib1g-dev
+
+sudo git clone https://github.com/ZerBea/hcxdumptool.git
+sudo git clone https://github.com/ZerBea/hcxtools.git
+sudo git clone https://github.com/hashcat/hashcat.git
+
+cd hcxdumptool
+sudo make
+sudo make install
+cd ..
+cd hcxtools/
+sudo make
+sudo make install
+cd ..
+cd hashcat
+sudo make
+sudo make install
+cd ..
