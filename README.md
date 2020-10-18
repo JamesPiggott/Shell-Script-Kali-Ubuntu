@@ -15,6 +15,9 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &
 sudo apt -y install python3-pip
 sudo pip3 install virtualenvwrapper
 
+### Install HDF5
+sudo apt -y install libhdf5-dev
+
 ### Set the Python3 environment variables
 sudo echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
 sudo echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
@@ -102,6 +105,9 @@ docker pull gcr.io/[PROJECT-ID]/[test-project]:tag1
 gcloud container images delete gcr.io/[PROJECT-ID]/quickstart-image:tag1 --force-delete-tags
 
 ## Pentesting software
+
+### Install nmap
+sudo apt -y install nmap
 
 ### Installing Hashcat
 sudo apt -y install libssl-dev libcurl4-openssl-dev libpcap0.8-dev zlib1g-dev
