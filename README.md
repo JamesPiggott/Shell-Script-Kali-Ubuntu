@@ -73,6 +73,12 @@ gcloud services enable cloudresourcemanager.googleapis.com pubsub.googleapis.com
 gcloud  config set compute/zone europe-west3-c
 gcloud container clusters create test_cluster --num-nodes 3
 
+### List zone of the GKE cluster
+gcloud container clusters list
+
+### Create a GCE persistent disk
+gcloud compute disks create --size=10GiB --zone=europe-west2-c postgres-db
+
 ## Set up Google Cloud Repository
 ### Install docker
 sudo apt -y install docker.io
