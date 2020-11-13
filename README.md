@@ -8,6 +8,12 @@ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 ## Install Git
 sudo apt-get -y install git && sudo apt-get -y install git-lfs
 
+### Generate key and add public key to GitHub
+ssh-keygen
+eval `ssh-agent`
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+
 ## Install Chrome browser
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb
 
