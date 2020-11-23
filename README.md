@@ -54,6 +54,9 @@ sudo apt -y install default-jdk
 ## Install IntelliJ
 sudo snap install intellij-idea-community --classic
 
+## Install PyCharm
+sudo snap install pycharm-community --classic
+
 ## Installing Google Cloud SDK
 
 ### Download and install Gcloud
