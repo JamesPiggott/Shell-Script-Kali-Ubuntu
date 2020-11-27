@@ -80,7 +80,7 @@ gcloud services enable cloudresourcemanager.googleapis.com pubsub.googleapis.com
 
 ### Set timezone and create a GKE cluster
 gcloud  config set compute/zone europe-west3-c
-gcloud container clusters create test_cluster --num-nodes 3
+gcloud container clusters create test-cluster --num-nodes 3
 
 ### List zone of the GKE cluster
 gcloud container clusters list
@@ -118,6 +118,52 @@ docker pull gcr.io/[PROJECT-ID]/[test-project]:tag1
 
 #### Head out to your project container registry to see the actual image
 gcloud container images delete gcr.io/[PROJECT-ID]/quickstart-image:tag1 --force-delete-tags
+
+## Install Helm
+sudo snap install helm --classic
+
+## Install Kasten K10
+helm repo add kasten https://charts.kasten.io/
+kubectl create namespace kasten-io
+helm install k10 kasten/k10 --namespace=kasten-io
+kubectl get pods --namespace kasten-io
+kubectl --namespace kasten-io port-forward service/gateway 8080:8000
+http://127.0.0.1:8080/k10/#/.
+
+## Install NGINX Ingress Controller for K8s
+git clone https://github.com/nginxinc/kubernetes-ingress/
+cd kubernetes-ingress/deployments
+git checkout v1.9.1
+
+### Configure RBAC
+kubectl apply -f common/ns-and-sa.yaml
+kubectl apply -f rbac/rbac.yaml
+
+### Create Common Resources
+kubectl apply -f common/default-server-secret.yaml
+kubectl apply -f common/nginx-config.yaml
+kubectl apply -f common/ingress-class.yaml
+
+### Create Custom Resources
+kubectl apply -f common/vs-definition.yaml
+kubectl apply -f common/vsr-definition.yaml
+kubectl apply -f common/ts-definition.yaml
+kubectl apply -f common/policy-definition.yaml
+
+kubectl apply -f common/gc-definition.yaml
+kubectl apply -f common/global-configuration.yaml
+
+### Run the Ingress Controller
+kubectl apply -f deployment/nginx-ingress.yaml
+
+### Gain access to the Ingress Controller
+kubectl apply -f service/loadbalancer.yaml
+kubectl get svc nginx-ingress --namespace=nginx-ingress
+
+### Uninstall NGINX Ingress Controller and RBAC
+kubectl delete namespace nginx-ingress
+kubectl delete clusterrole nginx-ingress
+kubectl delete clusterrolebinding nginx-ingress
 
 ## Pentesting software
 
