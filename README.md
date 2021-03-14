@@ -57,6 +57,13 @@ sudo snap install intellij-idea-community --classic
 ## Install PyCharm
 sudo snap install pycharm-community --classic
 
+## Install Go Programming Language
+wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+source $HOME/.profile
+
 ## Installing Google Cloud SDK
 
 ### Download and install Gcloud
