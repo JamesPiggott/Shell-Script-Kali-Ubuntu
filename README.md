@@ -51,6 +51,10 @@ sudo apt -y install code
 sudo apt -y install default-jre
 sudo apt -y install default-jdk
 
+# Install Maltego
+wget https://maltego-downloads.s3.us-east-2.amazonaws.com/linux/Maltego.v4.2.16.13775.deb
+sudo dpkg -i Maltego.v4.2.16.13775.deb
+
 ## Install IntelliJ
 sudo snap install intellij-idea-community --classic
 
