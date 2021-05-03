@@ -42,9 +42,9 @@ sudo echo "export PROJECT_HOME=$HOME" >> ~/.bashrc
 sudo echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 ```
 
-### Create an alias for Python3.8 (the latest version of Python installed), perform these commands in the terminal
+### Create an alias for Python3.9 (the latest version of Python installed), perform these commands in the terminal
 ```
-alias python='/usr/bin/python3.8'
+alias python='/usr/bin/python3.9'
 . ~/.bashrc
 python --version
 ```
@@ -96,6 +96,25 @@ export PATH=$PATH:/usr/local/go/bin
 source $HOME/.profile
 ```
 
+## Install Postgres database
+```
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql
+```
+
+## Install docker
+```
+sudo apt -y install docker.io
+sudo usermod -a -G docker ${USER}
+```
+
+sudo apt install auditd
+auditctl -l | grep /usr/bin/dockerd
+sudo gedit /etc/audit/audit.rules
+echo '-w /usr/bin/dockerd -k docker' >> /etc/audit/audit.rules
+service auditd restart
 
 ```
 
