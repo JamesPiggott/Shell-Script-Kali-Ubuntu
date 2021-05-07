@@ -1,4 +1,6 @@
-## Installing Google Cloud SDK
+# Installing Google Cloud SDK
+
+Procedure for setting up Google Cloud SDK (Gcloud), Kubectl, Helm etc
 
 ### Download and install Gcloud
 ```
