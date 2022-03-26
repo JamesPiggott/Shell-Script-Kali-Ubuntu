@@ -4,7 +4,7 @@ Use the following script to set up Ubuntu in one go. It will install Chrome, Git
 
 ## Update the system
 ```
-sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade && sudo apt autoremove
 ```
 
 ## Install Git
@@ -21,7 +21,9 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 ## Install Chrome browser
-```wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb```
+```
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb
+```
 
 ## Set Python environment to version 3
 ```
@@ -42,9 +44,9 @@ sudo echo "export PROJECT_HOME=$HOME" >> ~/.bashrc
 sudo echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 ```
 
-### Create an alias for Python3.9 (the latest version of Python installed), perform these commands in the terminal
+### Create an alias for Python3.10 (the latest version of Python installed), perform these commands in the terminal
 ```
-alias python='/usr/bin/python3.9'
+alias python='/usr/bin/python3.10'
 . ~/.bashrc
 python --version
 ```
@@ -71,12 +73,6 @@ sudo apt -y install default-jre
 sudo apt -y install default-jdk
 ```
 
-# Install Maltego
-```
-wget https://maltego-downloads.s3.us-east-2.amazonaws.com/linux/Maltego.v4.2.16.13775.deb
-sudo dpkg -i Maltego.v4.2.16.13775.deb
-```
-
 ## Install IntelliJ
 ```
 sudo snap install intellij-idea-community --classic
@@ -89,11 +85,11 @@ sudo snap install pycharm-community --classic
 
 ## Install Go Programming Language
 ```
-wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 source $HOME/.profile
+go version
 ```
 
 ## Install Postgres database
