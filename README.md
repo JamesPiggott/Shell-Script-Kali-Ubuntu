@@ -4,7 +4,7 @@ Use the following script to set up Ubuntu in one go. It will install Chrome, Git
 
 ## Update the system
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade && sudo apt autoremove
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt -y autoremove
 ```
 
 ## Install Git
