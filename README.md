@@ -1,15 +1,15 @@
 # Ubuntu Installation Guide
 
-Use the following script to set up Ubuntu in one go. It will install Chrome, Git, more editors, set up programming environments and prepare your machine for the cloud.
+I use the following list of steps to set up Ubuntu. It will install Chrome, Git, several IDEs, set up programming environments and prepare your machine for the cloud.
 
 ## Update the system
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt -y autoremove
+sudo apt update && sudo apt -y upgrade && sudo apt -y dist-upgrade && sudo apt -y autoremove && sudo apt clean
 ```
 
 ## Install Git
 ```
-sudo apt-get -y install git && sudo apt-get -y install git-lfs
+sudo apt -y install git && sudo apt -y install git-lfs
 ```
 
 ### Generate key and add public key to GitHub
@@ -54,8 +54,8 @@ python --version
 ## Install Terminator
 ```
 sudo add-apt-repository -y ppa:gnome-terminator
-sudo apt-get -y update
-sudo apt-get -y install terminator
+sudo apt -y update
+sudo apt -y install terminator
 ```
 
 ## Install Visual Studio Code
@@ -96,8 +96,8 @@ go version
 ```
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get -y install postgresql
+sudo apt update
+sudo apt -y install postgresql
 ```
 
 ## Install docker
