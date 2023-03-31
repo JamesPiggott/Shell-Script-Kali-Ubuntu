@@ -80,7 +80,12 @@ sudo snap install intellij-idea-community --classic
 
 ## Install PyCharm
 ```
-sudo snap install pycharm-community --classic
+wget https://download.jetbrains.com/python/pycharm-community-2023.1.tar.gz
+sudo tar xzf pycharm-*.tar.gz -C /opt/
+cd /opt/pycharm-*/bin
+sh pycharm.sh
+
+// After Pycharm starts running you can create a Desktop Entry. In the Welcome Screen click on the little cog (configure) in the bottom left. Then select Create Desktop Entry
 ```
 
 ## Install Go Programming Language
